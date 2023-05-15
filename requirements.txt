@@ -1,3 +1,4 @@
 pip install streamlit
 pip install snowflake-connector-python
 pip install pandas matplotlib
+pip install --upgrade pip
