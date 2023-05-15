@@ -4,10 +4,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Streamlit configuration
-st.set_page_config(page_title='Capitalization Table Software')
+st.set_page_config(page_title='EquityTrackr')
 
 # Page layout
-st.title('Capitalization Table Software')
+st.title('EquityTrackr')
 
 # Function to create the capitalization table
 def create_cap_table(conn, table_name):
