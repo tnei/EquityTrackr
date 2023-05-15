@@ -1,3 +1,4 @@
+streamlit==0.89.2
 snowflake-connector-python
-pip install streamlit==0.89.2
-pandas matplotlib
+pandas
+matplotlib
