@@ -103,7 +103,7 @@ else:
     st.info('No ownership data available.')
 
 elif menu == 'Valuations':
-    st.header('Valuations')
+    st.header('Valuations, Investments, and Share Price')
     pre_money = st.number_input('Pre-Money Valuation')
     invested = st.number_input('Total Invested in Round')
     post_money = pre_money + invested
@@ -122,5 +122,3 @@ elif menu == 'Valuations':
 
 else:
     st.info('No ownership data available.')
-
-
