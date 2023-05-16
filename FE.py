@@ -102,7 +102,7 @@ elif menu == 'Visualize Ownership':
 else:
     st.info('No ownership data available.')
 
-    elif menu == 'Valuations':
+elif menu == 'Valuations':
     st.header('Valuations')
     pre_money = st.number_input('Pre-Money Valuation')
     invested = st.number_input('Total Invested in Round')
