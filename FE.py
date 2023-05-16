@@ -110,9 +110,9 @@ elif menu == 'Valuations':
     price_per_share = st.number_input('Price / Share')
     liquidation_preference = st.number_input('Liquidation Preference')
     participating_preferred = st.checkbox('Participating Preferred')
-    
+
     st.write(f'Post-Money Valuation: {post_money}')
-    
+
     if participating_preferred:
         payout = max(post_money - liquidation_preference, 0) + (ownership * invested)
         st.write(f'Total Payout: {payout}')
@@ -122,4 +122,5 @@ elif menu == 'Valuations':
 
 else:
     st.info('No ownership data available.')
+
 
