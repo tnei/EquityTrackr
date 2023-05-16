@@ -40,7 +40,7 @@ snowflake_password = st.text_input('Snowflake Password', type='password')
 snowflake_account = st.text_input('Snowflake Account')
 snowflake_warehouse = st.text_input('Snowflake Warehouse')
 snowflake_database = st.text_input('Snowflake Database')
-snowflake_schema = st.text_input('Snowflake Schema')
+tenant_id = st.text_input('Tenant ID')  # Prompt for tenant identifier
 snowflake_table = st.text_input('Snowflake Table')
 
 # Connect to Snowflake
@@ -52,7 +52,7 @@ if st.button('Connect'):
             account=snowflake_account,
             warehouse=snowflake_warehouse,
             database=snowflake_database,
-            schema=snowflake_schema
+            schema=tenant_id  # Use tenant identifier as the schema name
         )
         st.success('Snowflake connection successful!')
         create_cap_table(conn, snowflake_table)
