@@ -102,23 +102,48 @@ elif menu == 'Visualize Ownership':
 else:
     st.info('No ownership data available.')
 
-elif menu == 'Valuations':
-    st.header('Valuations, Investments, and Share Price')
-    pre_money = st.number_input('Pre-Money Valuation')
-    invested = st.number_input('Total Invested in Round')
-    post_money = pre_money + invested
-    price_per_share = st.number_input('Price / Share')
-    liquidation_preference = st.number_input('Liquidation Preference')
-    participating_preferred = st.checkbox('Participating Preferred')
+elif menu == 'Shares and Options':
+    st.header('Shares and Options owned by the Founders of the Company')
 
-    st.write(f'Post-Money Valuation: {post_money}')
+    founders = st.text_area('Founders (separated by comma)')
+    founders = [founder.strip() for founder in founders.split(',')]
 
-    if participating_preferred:
-        payout = max(post_money - liquidation_preference, 0) + (ownership * invested)
-        st.write(f'Total Payout: {payout}')
-    else:
-        payout = min(post_money, liquidation_preference) + (ownership * invested)
-        st.write(f'Total Payout: {payout}')
+    common_shares = []
+    options = []
+    series_a_shares = []
+    series_a_investment = []
+    total_ownership = []
+    percentage_fully_diluted = []
+
+    for founder in founders:
+        st.subheader(founder)
+
+        common_share = st.number_input('Common Shares')
+        option = st.number_input('Options')
+        series_a_share = st.number_input('Series A Preferred Shares')
+        series_a_inv = st.number_input('Series A Investment')
+
+        total_ownership.append(common_share + series_a_share)
+        percentage_fully_diluted.append(total_ownership[-1] / (pre_money + invested) * 100)
+
+        common_shares.append(common_share)
+        options.append(option)
+        series_a_shares.append(series_a_share)
+        series_a_investment.append(series_a_inv)
+
+    data = {
+        'Shareholders': founders,
+        'Common Shares': common_shares,
+        'Options': options,
+        'Series A Preferred Shares': series_a_shares,
+        'Series A Investment': series_a_investment,
+        'Total Share Ownership': total_ownership,
+        'Percentage of Fully Diluted Shares': percentage_fully_diluted
+    }
+
+    df = pd.DataFrame(data)
+    st.table(df)
 
 else:
     st.info('No ownership data available.')
+
