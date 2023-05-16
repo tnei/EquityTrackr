@@ -102,4 +102,24 @@ elif menu == 'Visualize Ownership':
 else:
     st.info('No ownership data available.')
 
+elif menu == 'Valuations':
+    st.header('Valuations')
+    pre_money = st.number_input('Pre-Money Valuation')
+    invested = st.number_input('Total Invested in Round')
+    post_money = pre_money + invested
+    price_per_share = st.number_input('Price / Share')
+    liquidation_preference = st.number_input('Liquidation Preference')
+    participating_preferred = st.checkbox('Participating Preferred')
+    
+    st.write(f'Post-Money Valuation: {post_money}')
+    
+    if participating_preferred:
+        payout = max(post_money - liquidation_preference, 0) + (ownership * invested)
+        st.write(f'Total Payout: {payout}')
+    else:
+        payout = min(post_money, liquidation_preference) + (ownership * invested)
+        st.write(f'Total Payout: {payout}')
+
+else:
+    st.info('No ownership data available.')
 
